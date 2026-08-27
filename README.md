@@ -9,6 +9,7 @@ Aplikasi ini membantu pengelolaan katalog buku, data siswa, data petugas, peminj
 Repository: github.com/Ayu155/perpusukk2
 
 Demo: ayu155.github.io/perpusukk2
+https://stitch.withgoogle.com/projects/17320341967523360622?pli=1
 
 Catatan: Source aplikasi pada repository menggunakan PHP dan MySQL sehingga untuk menjalankan fungsi backend secara penuh diperlukan server PHP + MySQL. URL demo dapat digunakan sebagai halaman/demo frontend sesuai deployment yang tersedia.
 
