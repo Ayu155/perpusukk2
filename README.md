@@ -205,6 +205,8 @@ ulasan
 
 Berikut algoritma (pseudocode) dari proses-proses utama pada aplikasi.
 
+📄 Dokumen lengkap (format Word): [Algoritma_Perpustakaan_SMKN1Sanden.docx](Algoritma_Perpustakaan_SMKN1Sanden.docx)
+
 ### 1. Algoritma Login
 
 ![Flowchart Algoritma Login](algoritma-login.svg)
