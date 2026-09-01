@@ -102,13 +102,21 @@ Relasi utama antar tabel:
 - **buku** (1) — (N) **ulasan**: satu buku dapat menerima banyak ulasan/rating dari siswa berbeda.
 - **petugas** berdiri sendiri (mengelola proses persetujuan & pengembalian, tidak berelasi langsung sebagai foreign key ke tabel lain berdasarkan query yang digunakan).
 
-## 🎨 Mockup / UI Design
+## 🎨 Mockup / Lokasi Perpustakaan
 
-Rancangan tampilan (mockup) aplikasi dibuat menggunakan **Google Stitch** sebelum diimplementasikan ke kode:
+Perpustakaan **Samodera Ilmu** berada di **Gedung Kakap**, SMK N 1 Sanden — berikut lokasinya pada denah ruang sekolah:
 
-🔗 [Lihat mockup di Google Stitch](https://stitch.withgoogle.com/projects/17320341967523360622?pli=1)
+![Lokasi Perpustakaan Samodera Ilmu pada Denah Sekolah](denah-lokasi-perpustakaan.png)
 
-Mockup mencakup rancangan halaman:
+Detail lokasi (diperbesar):
+
+![Detail Lokasi Perpustakaan Samodera Ilmu di Gedung Kakap](perpustakaan-samodera-ilmu-detail.png)
+
+Selain denah lokasi fisik di atas, rancangan tampilan (mockup UI) aplikasi juga dibuat menggunakan **Google Stitch** sebelum diimplementasikan ke kode:
+
+🔗 [Lihat mockup UI di Google Stitch](https://stitch.withgoogle.com/projects/17320341967523360622?pli=1)
+
+Mockup UI mencakup rancangan halaman:
 
 - Landing page (termasuk grafik, rating bintang, dan kualitas buku)
 - Halaman login
@@ -199,6 +207,8 @@ Berikut algoritma (pseudocode) dari proses-proses utama pada aplikasi.
 
 ### 1. Algoritma Login
 
+![Flowchart Algoritma Login](algoritma-login.svg)
+
 ```
 INPUT: username_atau_nis, password
 1. Ambil data user dari tabel `user` berdasarkan username atau nis
@@ -217,6 +227,8 @@ INPUT: username_atau_nis, password
 
 ### 2. Algoritma Pengajuan Peminjaman (Siswa)
 
+![Flowchart Algoritma Pengajuan Peminjaman](algoritma-peminjaman.svg)
+
 ```
 INPUT: id_anggota, id_buku
 1. Pastikan siswa sudah login
@@ -229,6 +241,8 @@ INPUT: id_anggota, id_buku
 ```
 
 ### 3. Algoritma Persetujuan Peminjaman (Petugas)
+
+![Flowchart Algoritma Persetujuan Peminjaman](algoritma-persetujuan.svg)
 
 ```
 INPUT: id_peminjaman, keputusan (setuju / tolak)
@@ -245,6 +259,8 @@ INPUT: id_peminjaman, keputusan (setuju / tolak)
 ```
 
 ### 4. Algoritma Pengembalian & Perhitungan Denda
+
+![Flowchart Algoritma Pengembalian dan Denda](algoritma-pengembalian.svg)
 
 ```
 INPUT: id_peminjaman, kondisi_buku, tgl_dikembalikan
@@ -266,6 +282,8 @@ INPUT: id_peminjaman, kondisi_buku, tgl_dikembalikan
 ```
 
 ### 5. Algoritma Rating & Ulasan
+
+![Flowchart Algoritma Rating dan Ulasan](algoritma-rating.svg)
 
 ```
 INPUT: id_buku, id_user, rating, komentar
