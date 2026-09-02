@@ -1,0 +1,103 @@
+====================================================================
+DOKUMEN ALGORITMA
+Sistem Informasi Perpustakaan Digital
+UKK Perpustakaan SMK N 1 Sanden
+====================================================================
+
+perpusukk2.free.nf
+
+Disusun oleh   : Ayu Rahmawati
+Kelas/Jurusan  : RPL - SMK N 1 Sanden
+Pembimbing     : Salsa Bella Putri, S.Kom.
+Tahun          : 2026
+
+Berikut algoritma (pseudocode) dari proses-proses utama pada aplikasi
+Sistem Informasi Perpustakaan Digital SMK N 1 Sanden.
+
+--------------------------------------------------------------------
+1. ALGORITMA LOGIN
+--------------------------------------------------------------------
+INPUT: username_atau_nis, password
+
+1. Ambil data user dari tabel `user` berdasarkan username atau nis
+2. IF data ditemukan THEN
+       IF password cocok THEN
+           Simpan session (id_user, level)
+           Arahkan ke dashboard sesuai level:
+               admin   -> admin/dashboard.php
+               petugas -> petugas/dashboard.php
+               siswa   -> siswa/dashboard.php
+       ELSE
+           Tampilkan pesan "Password salah"
+   ELSE
+       Tampilkan pesan "User tidak ditemukan"
+
+--------------------------------------------------------------------
+2. ALGORITMA PENGAJUAN PEMINJAMAN (SISWA)
+--------------------------------------------------------------------
+INPUT: id_anggota, id_buku
+
+1. Pastikan siswa sudah login
+2. Ambil data buku berdasarkan id_buku
+3. IF stok_tersedia > 0 THEN
+       Simpan pengajuan baru ke tabel peminjaman dengan status = "menunggu"
+       Tampilkan pesan "Pengajuan berhasil dikirim"
+   ELSE
+       Tampilkan pesan "Stok buku habis"
+
+--------------------------------------------------------------------
+3. ALGORITMA PERSETUJUAN PEMINJAMAN (PETUGAS)
+--------------------------------------------------------------------
+INPUT: id_peminjaman, keputusan (setuju / tolak)
+
+1. Ambil data peminjaman berdasarkan id_peminjaman
+2. IF keputusan == "setuju" THEN
+       IF stok_tersedia > 0 THEN
+           Update status = "dipinjam"
+           stok_tersedia = stok_tersedia - 1
+       ELSE
+           Tampilkan pesan "Stok tidak tersedia"
+   ELSE
+       Update status = "ditolak"
+3. Simpan perubahan ke database
+
+--------------------------------------------------------------------
+4. ALGORITMA PENGEMBALIAN & PERHITUNGAN DENDA
+--------------------------------------------------------------------
+INPUT: id_peminjaman, kondisi_buku, tgl_dikembalikan
+
+1. Ambil data peminjaman berdasarkan id_peminjaman
+2. selisih_hari = tgl_dikembalikan - tgl_kembali
+3. IF selisih_hari > 0 THEN
+       denda_telat = selisih_hari * tarif_denda_per_hari
+   ELSE
+       denda_telat = 0
+4. SWITCH kondisi_buku:
+       "Baik"         -> denda_kondisi = 0
+       "Rusak Ringan" -> denda_kondisi = 5000
+       "Rusak Berat"  -> denda_kondisi = 20000
+       "Hilang"       -> denda_kondisi = 50000, stok_total = stok_total - 1
+5. total_denda = denda_telat + denda_kondisi
+6. Update peminjaman: status = "dikembalikan", denda = total_denda,
+   kondisi = kondisi_buku
+7. IF kondisi_buku != "Hilang" THEN stok_tersedia = stok_tersedia + 1
+8. Simpan perubahan ke database
+
+--------------------------------------------------------------------
+5. ALGORITMA RATING & ULASAN
+--------------------------------------------------------------------
+INPUT: id_buku, id_user, rating, komentar
+
+1. Cek apakah siswa (id_user) pernah meminjam & mengembalikan
+   buku (id_buku) tersebut
+2. IF ya THEN
+       Simpan rating dan komentar ke tabel ulasan
+   ELSE
+       Tampilkan pesan "Anda belum meminjam buku ini"
+3. Hitung ulang rata-rata rating buku (AVG rating dari semua ulasan
+   pada id_buku)
+4. Update tampilan rating pada landing page dan halaman detail buku
+
+====================================================================
+(c) 2026 Ayu Rahmawati - UKK RPL SMK N 1 Sanden
+====================================================================
