@@ -12,7 +12,6 @@ Aplikasi ini membantu pengelolaan katalog buku, data siswa, data petugas, peminj
 - Panel Hosting (InfinityFree): [dash.infinityfree.com/accounts/if0_42754193](https://dash.infinityfree.com/accounts/if0_42754193)
 - Mockup / Desain UI (Google Stitch): [stitch.withgoogle.com/projects/17320341967523360622](https://stitch.withgoogle.com/projects/17320341967523360622?pli=1)
 
-> ⚠️ Catatan: link panel hosting InfinityFree di atas mengarah ke halaman kontrol akun (butuh login). Sebaiknya di README publik cukup cantumkan link demo live-nya saja (perpusukk2.free.nf); link dashboard akun biasanya tidak perlu dipublikasikan karena berkaitan langsung dengan pengelolaan akun hosting.
 
 Catatan: Source aplikasi pada repository menggunakan PHP dan MySQL sehingga untuk menjalankan fungsi backend secara penuh diperlukan server PHP + MySQL. URL demo statis (GitHub Pages) dapat digunakan sebagai halaman/demo frontend saja, sedangkan live demo di InfinityFree menjalankan backend PHP + MySQL secara penuh.
 
